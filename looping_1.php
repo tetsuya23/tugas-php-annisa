@@ -1,7 +1,7 @@
 <?php
 
 for ($i = 0; $i <= 9 ; $i++) {
-    for ($a=0; $a < $i ; $a++) {
+    for ($a=0; $a > $i ; $a++) {
         echo "0";
         echo "1";
         echo "2";
