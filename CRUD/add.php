@@ -4,6 +4,7 @@
     </head>
     <?php
         include_once("koneksi.php");
+        $pembeli = mysqli_query($mysqli, "SELECT * FROM pembeli");
         $obat = mysqli_query($mysqli, "SELECT * FROM obat");
         $transaksi = mysqli_query($mysqli, "SELECT * FROM transaksi");
 ?>
@@ -14,19 +15,19 @@
     <form action="add.php" method="post" name="form1">
         <table width="25%" border="0">
             <tr>
-                <td>nm_pembeli</td>
+                <td>Nama Pembeli</td>
                 <td><input type="text" name="nm_pembeli"></td>
             </tr>
             <tr>
-                <td>almt</td>
+                <td>Alamat</td>
                 <td><input type="text" name="almt"></td>
             </tr>
             <tr>
-                <td>no_hp</td>
+                <td>Nomer HP</td>
                 <td><input type="text" name="no_hp"></td>
             </tr>
             <tr>
-            <td>obat</td>
+            <td>Obat</td>
 				<td>
 					<select name="id">
 						<?php 
@@ -49,6 +50,10 @@
 					</select>
 				</td>
 			</tr>
+            <tr> 
+				<td></td>
+				<td><input type="submit" name="Add" value="Add"></td>
+			</tr>
         </table>
     </form>
     <?php
@@ -57,12 +62,12 @@
 			$nm_pembeli = $_POST['nm_pembeli'];
 			$almt = $_POST['almt'];
 			$no_hp = $_POST['no_hp'];
-			$id = $_POST['idobat'];
-			$id = $_POST['idtransaksi'];
+			$obat = $_POST['id'];
+			$transaksi = $_POST['id'];
 			
             include_once("koneksi.php");
 
-			$result = mysqli_query($mysqli, "INSERT INTO `pembeli` (`nm_pembeli`, `almt`, `no_hp`, `id`, `id`, `id_katalog`) VALUES ('$nm_pembeli', '$almt', '$no_hp', '$id', '$id');");
+			$result = mysqli_query($mysqli, "INSERT INTO `pembeli` (`nm_pembeli`, `almt`, `no_hp`, `id`, `id`) VALUES ('$nm_pembeli', '$almt', '$no_hp', '$obat', '$transaksi');");
 			
 			header("Location:index.php");
         }

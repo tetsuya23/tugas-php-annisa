@@ -1,7 +1,9 @@
 <?php
 include_once("koneksi.php");
-$pembeli= mysqli_query($mysqli, "SELECT pembeli.*, nm_pembeli, idobat FROM pembeli
-                         JOIN obat ON pembeli.idobat = obat.id ORDER BY id_obat ASC");
+$pembeli= mysqli_query($mysqli, "SELECT pembeli.*, nm_pembeli, almt, no_hp, idobat, status FROM pembeli
+                         JOIN obat ON pembeli.idobat = obat.id 
+                         JOIN transaksi ON pembeli.id_pembeli = transaksi.id
+                         ORDER BY transaksi ASC");
 
 ?>
 
@@ -12,11 +14,11 @@ $pembeli= mysqli_query($mysqli, "SELECT pembeli.*, nm_pembeli, idobat FROM pembe
     <body>
         <center>
             <a href="index.php">Obat</a> |
-            <a href="#">Pembeli</a> |
-            <a href="#">Dokter</a> |
-            <a href="#">Petugas</a> |
-            <a href="#">Detail</a> |
-            <a href="#">Transaksi</a>
+            <a href="index.php">Pembeli</a> |
+            <a href="index.php">Dokter</a> |
+            <a href="index.php">Petugas</a> |
+            <a href="index.php">Detail</a> |
+            <a href="index.php">Transaksi</a>
             <hr>
         </center>
 
@@ -24,9 +26,11 @@ $pembeli= mysqli_query($mysqli, "SELECT pembeli.*, nm_pembeli, idobat FROM pembe
 
             <table class="table" width='80%' border=1>
                 <tr>
-                    <th>nm_pembeli</th>
-                    <th>almt</th>
-                    <th>no_hp</th>
+                    <th>Nama Pembeli</th>
+                    <th>Alamat</th>
+                    <th>Nomer HP</th>
+                    <th>Obat</th>
+                    <th>Transaksi</th>
                     <th>Aksi</th>
                 </tr>
                 <?php
@@ -34,8 +38,11 @@ $pembeli= mysqli_query($mysqli, "SELECT pembeli.*, nm_pembeli, idobat FROM pembe
                         echo "<tr>";
                         echo "<td>". $pembeli_data['nm_pembeli']. "</td>";
                         echo "<td>". $pembeli_data['almt']. "</td>";
-                        echo "<td><a href='form-edit.php?nm_pembeli=$pembeli_data[nm_pembeli]'>Edit</a> | 
-                        <a href='delete.php?nm_pembeli=$pembeli_data[nm_pembeli]'>Delete</a></td></tr>";
+                        echo "<td>". $pembeli_data['no_hp']. "</td>";
+                        echo "<td>". $obat_data['id']. "</td>";
+                        echo "<td>". $transaksi_data['id']. "</td>";
+                        echo "<td><a href='edit.php'>Edit</a> | 
+                        <a href='delete.php'>Delete</a></td></tr>";
                     }
                     ?>
              </table>
