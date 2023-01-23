@@ -12,7 +12,7 @@
     <a href="index.php">Go to Home</a>
     <br/><br/>
 
-    <form action="add.php" method="post" name="pembeli">
+    <form action="add.php" method="post" >
         <table width="25%" border="0">
             <tr>
                 <td>Nama Pembeli</td>

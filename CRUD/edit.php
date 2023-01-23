@@ -33,7 +33,7 @@
 		<table width="25%" border="0">
 			<tr> 
 				<td>Nama Pembeli</td>
-				<td><input type="text" name="nm_pembeli" value="<?php echo $id_pembeli; ?>"></td>
+				<td><input type="text" name="id" value="<?php echo $id_pembeli; ?>"></td>
 			</tr>
 			<tr> 
 				<td>Alamat</td>
