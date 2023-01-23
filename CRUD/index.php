@@ -2,7 +2,7 @@
 include_once("koneksi.php");
 $pembeli= mysqli_query($mysqli, "SELECT pembeli.*, nm_pembeli, almt, no_hp, idobat, status FROM pembeli
                          JOIN obat ON pembeli.idobat = obat.id 
-                         JOIN transaksi ON pembeli.id_pembeli = transaksi.id
+                         JOIN transaksi ON transaksi.id_pembeli = pembeli.id
                          ORDER BY transaksi ASC");
 
 ?>
@@ -10,6 +10,8 @@ $pembeli= mysqli_query($mysqli, "SELECT pembeli.*, nm_pembeli, almt, no_hp, idob
 <html>
     <head>
         <title> CRUD PHP </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </head>
     <body>
         <center>
@@ -41,8 +43,8 @@ $pembeli= mysqli_query($mysqli, "SELECT pembeli.*, nm_pembeli, almt, no_hp, idob
                         echo "<td>". $pembeli_data['no_hp']. "</td>";
                         echo "<td>". $obat_data['id']. "</td>";
                         echo "<td>". $transaksi_data['id']. "</td>";
-                        echo "<td><a href='edit.php'>Edit</a> | 
-                        <a href='delete.php'>Delete</a></td></tr>";
+                        echo "<td><a class='btn-primary' href='edit.php'>Edit</a> | 
+                        <a class='btn-peimary' href='delete.php'>Delete</a></td></tr>";
                     }
                     ?>
              </table>
