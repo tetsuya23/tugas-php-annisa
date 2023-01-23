@@ -29,10 +29,10 @@
             <tr>
             <td>Obat</td>
 				<td>
-					<select name="id">
+					<select name="id_obat">
 						<?php 
 						    while($obat_data = mysqli_fetch_array($obat)) {         
-						    	echo "<option value='".$obat_data['id']."'>".$obat_data['nm_obat']."</option>";
+						    	echo "<option value='".$obat_data['Id']."'>".$obat_data['nm_obat']."</option>";
 						    }
 						?>
 					</select>
@@ -41,34 +41,35 @@
             <tr> 
 				<td>Transaksi</td>
 				<td>
-					<select name="id">
-						<?php 
-						    while($transaksi_data = mysqli_fetch_array($transaksi)) {         
-						    	echo "<option value='".$transaksi_data['id']."'>".$transaksi_data['status']."</option>";
-						    }
-						?>
+					<select name="status">
+					<option value="tunai">Tunai</option>
+                    <option value="transfer">Transfer</option>
 					</select>
 				</td>
 			</tr>
             <tr> 
 				<td></td>
-				<td><input type="submit" name="Add" value="Add"></td>
+				<td><input type="submit" name="submit" value="Add"></td>
 			</tr>
         </table>
     </form>
     <?php
     // Check If form submitted, insert form data into users table.
-		if(isset($_POST['Submit'])) {
-			$pembeli = $_POST['nm_pembeli'];
+		if(isset($_POST['submit'])) {
+		//echo "2";
+            $pembeli = $_POST['nm_pembeli'];
 			$almt = $_POST['almt'];
 			$no_hp = $_POST['no_hp'];
-			$obat = $_POST['id'];
-			$transaksi = $_POST['id'];
+			$obat = $_POST['id_obat'];
+			$transaksi = $_POST['status'];
 			
             include_once("koneksi.php");
 
-			$result = mysqli_query($mysqli, "INSERT INTO `pembeli` (`nm_pembeli`, `almt`, `no_hp`, `id`, `id`) VALUES ('$pembeli', '$almt', '$no_hp', '$obat', '$transaksi');");
-			
+			$insertpembeli = mysqli_query($mysqli, "INSERT INTO `pembeli` (`nm_pembeli`, `almt`, `no_hp`, `id_obat`) VALUES ('$pembeli', '$almt', '$no_hp', '$obat');");
+            
+			//$inserttransaksi = mysqli_query($mysqli, "INSERT INTO `transaksi` ('id_pembeli', 'status') VALUES ('$insertpembeli->lastInsertId()', '$transaksi');");
+
+            
 			header("Location:index.php");
         }
     ?>

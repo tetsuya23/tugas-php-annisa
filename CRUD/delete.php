@@ -1,11 +1,7 @@
 <?php
 include_once("koneksi.php");
  
-$id_pembeli = $_GET['id'];
-$almt = $_GET['almt'];
-$no_hp = $_GET['no_hp'];
-$obat = $_GET['id'];
-$transaksi = $_GET['id'];
+$id_pembeli = $_GET['id_pembeli'];
 
 $result = mysqli_query($mysqli, "DELETE FROM pembeli WHERE id='$id_pembeli'");
 

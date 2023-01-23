@@ -1,8 +1,8 @@
 <?php
 include_once("koneksi.php");
-$pembeli= mysqli_query($mysqli, "SELECT nm_pembeli, almt, no_hp, idobat, nm_obat, status FROM pembeli
-                         JOIN obat ON pembeli.idobat = obat.id 
-                         JOIN transaksi ON transaksi.id_pembeli = pembeli.id
+$pembeli= mysqli_query($mysqli, "SELECT pembeli.id as id_pembeli, nm_pembeli, almt, no_hp, id_obat, nm_obat, status FROM pembeli
+                         JOIN obat ON pembeli.id_obat = obat.id 
+                         LEFT JOIN transaksi ON transaksi.id_pembeli = pembeli.id
                          ORDER BY nm_pembeli ASC");
 ?>
 
@@ -42,8 +42,8 @@ $pembeli= mysqli_query($mysqli, "SELECT nm_pembeli, almt, no_hp, idobat, nm_obat
                         echo "<td>". $pembeli_data['no_hp']. "</td>";
                         echo "<td>". $pembeli_data['nm_obat']. "</td>";
                         echo "<td>". $pembeli_data['status']. "</td>";
-                        echo "<td><a class='btn btn-outline-success' href='edit.php'>Edit</a> | 
-                        <a class='btn btn-secondary' href='delete.php'>Delete</a></td></tr>";
+                        echo "<td><a class='btn btn-outline-success' href='edit.php?id_pembeli=".$pembeli_data['id_pembeli']."'>Edit</a> | 
+                        <a class='btn btn-secondary' href='delete.php?id_pembeli=".$pembeli_data['id_pembeli']."'>Delete</a></td></tr>";
                     }
                     ?>
              </table>
