@@ -5,18 +5,18 @@
 
 <?php
 	include_once("koneksi.php");
-	$nm_pembeli = $_POST['nm_pembeli'];
+	$id_pembeli = $_POST['id'];
     $almt = $_POST['almt'];
     $no_hp = $_POST['no_hp'];
     
-	$pembeli = mysqli_query($mysqli, "SELECT * FROM pembeli WHERE nm_pembeli='$nm_pembeli'");
+	$pembeli = mysqli_query($mysqli, "SELECT pembeli.id as id_pembeli FROM pembeli WHERE id='$id_pembeli'");
     $obat = mysqli_query($mysqli, "SELECT * FROM obat");
     $transaksi = mysqli_query($mysqli, "SELECT * FROM transaksi");
     
     while($pembeli_data = mysqli_fetch_array($pembeli))
     {
-    	$id = $pembeli_data['id'];
-    	$nm_pembeli = $pembeli_data['nm_pembeli'];
+    	
+    	$id_pembeli = $pembeli_data['id'];
     	$almt = $pembeli_data['almt'];
         $no_hp = $pembeli_data['no_hp'];
     	$obat = $obat_data['id'];
@@ -29,11 +29,11 @@
 	<a href="index.php">Go to Home</a>
 	<br/><br/>
  
-	<form action="edit.php?nm_pembeli=<?php echo $nm_pembeli; ?>" method="post">
+	<form action="edit.php<?php echo $id_pembeli; ?>" method="post">
 		<table width="25%" border="0">
 			<tr> 
 				<td>Nama Pembeli</td>
-				<td><input type="text" name="nm_pembeli" value="<?php echo $nm_pembeli; ?>"></td>
+				<td><input type="text" name="nm_pembeli" value="<?php echo $id_pembeli; ?>"></td>
 			</tr>
 			<tr> 
 				<td>Alamat</td>
@@ -80,7 +80,7 @@
 		// Check If form submitted, insert form data into users table.
 		if(isset($_POST['update'])) {
 
-			$nm_pembeli = $_POST['nm_pembeli'];
+			$id_pembeli = $_POST['id'];
 			$almt = $_POST['almt'];
 			$no_hp = $_POST['no_hp'];
 			$obat = $_POST['id'];
@@ -88,7 +88,7 @@
 						
 			include_once("koneksi.php");
 
-			$result = mysqli_query($mysqli, "UPDATE pembeli SET nm_pembeli = '$nm_pembeli', almt = '$almt', no_hp = '$no_hp', id = '$obat', id = '$transaksi',  WHERE nm_pembeli = '$nm_pembeli';");
+			$result = mysqli_query($mysqli, "UPDATE pembeli SET id = '$id_pembeli', almt = '$almt', no_hp = '$no_hp', id = '$obat', id = '$transaksi',  WHERE id = '$id_pembeli';");
 			
 			header("Location:index.php");
 		}

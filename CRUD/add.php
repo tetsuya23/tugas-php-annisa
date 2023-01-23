@@ -12,7 +12,7 @@
     <a href="index.php">Go to Home</a>
     <br/><br/>
 
-    <form action="add.php" method="post" name="form1">
+    <form action="add.php" method="post" name="pembeli">
         <table width="25%" border="0">
             <tr>
                 <td>Nama Pembeli</td>
@@ -59,7 +59,7 @@
     <?php
     // Check If form submitted, insert form data into users table.
 		if(isset($_POST['Submit'])) {
-			$nm_pembeli = $_POST['nm_pembeli'];
+			$pembeli = $_POST['nm_pembeli'];
 			$almt = $_POST['almt'];
 			$no_hp = $_POST['no_hp'];
 			$obat = $_POST['id'];
@@ -67,7 +67,7 @@
 			
             include_once("koneksi.php");
 
-			$result = mysqli_query($mysqli, "INSERT INTO `pembeli` (`nm_pembeli`, `almt`, `no_hp`, `id`, `id`) VALUES ('$nm_pembeli', '$almt', '$no_hp', '$obat', '$transaksi');");
+			$result = mysqli_query($mysqli, "INSERT INTO `pembeli` (`nm_pembeli`, `almt`, `no_hp`, `id`, `id`) VALUES ('$pembeli', '$almt', '$no_hp', '$obat', '$transaksi');");
 			
 			header("Location:index.php");
         }
